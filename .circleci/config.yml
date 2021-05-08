@@ -24,4 +24,4 @@ jobs:
           app-dir: ~/project/project
       - run:
           name: Run tests
-          command: cd project/project && python manage.py test
+          command: cd project && python manage.py test
