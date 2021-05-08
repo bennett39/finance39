@@ -8,20 +8,20 @@ orbs:
   python: circleci/python@1.2
 
 workflows:
-  commit: 
+  commit:
     jobs:
       - build-and-test
 
 
 jobs:
-  build-and-test: 
+  build-and-test:
     docker:
       - image: cimg/python:3.8
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-          app-dir: ~/project
+          app-dir: ~/project/project
       - run:
           name: Run tests
           command: python manage.py test
