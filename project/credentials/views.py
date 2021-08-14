@@ -6,6 +6,8 @@ from credentials.serializers import CredentialSerializer
 
 class CredentialViewSet(viewsets.ModelViewSet):
     """API endpoint to add/edit credentials"""
-    queryset = Credential.objects.all()
     serializer_class = CredentialSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return self.request.user.credential_set.all()

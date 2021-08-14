@@ -6,6 +6,8 @@ from categories.models import Category
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """API endpoint to add/edit categories"""
-    queryset = Category.objects.all().order_by('pk')
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return self.request.user.category_set.all()

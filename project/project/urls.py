@@ -8,11 +8,11 @@ from transactions.views import TransactionViewSet
 from users.views import UserViewSet, GroupViewSet
 
 router = routers.DefaultRouter()
-router.register('categories', CategoryViewSet)
-router.register('credentials', CredentialViewSet)
-router.register('transactions', TransactionViewSet)
-router.register('users', UserViewSet)
-router.register('groups', GroupViewSet)
+router.register('categories', CategoryViewSet, basename='category')
+router.register('credentials', CredentialViewSet, basename='credential')
+router.register('transactions', TransactionViewSet, basename='transaction')
+router.register('users', UserViewSet, basename='user')
+router.register('groups', GroupViewSet, basename='group')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

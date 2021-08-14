@@ -6,6 +6,8 @@ from transactions.serializers import TransactionSerializer
 
 class TransactionViewSet(viewsets.ModelViewSet):
     """API endpoint to add/edit transactions"""
-    queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return self.request.user.transaction_set.all()
