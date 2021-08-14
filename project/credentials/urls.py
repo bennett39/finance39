@@ -1,6 +1,6 @@
 from django.urls import include, path
 from rest_framework import routers
-import .views
+from credentials import views
 
 router = routers.DefaultRouter()
 router.register('credentials', views.CredentialViewSet)

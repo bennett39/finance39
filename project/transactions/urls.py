@@ -1,6 +1,6 @@
 from django.urls import include, path
 from rest_framework import routers
-import .views
+from transactions import views
 
 router = routers.DefaultRouter()
 router.register('transactions', views.TransactionViewSet)
