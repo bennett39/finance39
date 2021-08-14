@@ -23,7 +23,7 @@ class CredentialsTestCase(UserTestCase):
 
         for name, token in tokens:
             credential, created = Credential.objects.get_or_create(name=name, user=self.user, defaults=dict(token=token))
-            self.assertGreater(credential.id, 0)
+            self.assertIsNotNone(credential.uuid)
             self.assertTrue(created)
 
         for name, token in tokens:
