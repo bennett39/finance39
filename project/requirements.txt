@@ -8,6 +8,7 @@ cryptography==3.4.7
 Django==3.2.6
 django-appconf==1.0.4
 django-cryptography==1.0
+djangorestframework==3.12.4
 docutils==0.17.1
 idna==3.2
 imagesize==1.2.0
