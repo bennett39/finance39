@@ -3,7 +3,7 @@ from django.db.utils import IntegrityError
 from django.test import TestCase
 
 from testing.test import UserTestCase
-from .models import Category
+from categories.models import Category
 
 
 class CategoryModelTestCase(UserTestCase):

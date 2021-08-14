@@ -1,7 +1,7 @@
 from django.db.utils import IntegrityError
 
 from testing.test import UserTestCase
-from .models import Credential
+from credentials.models import Credential
 
 
 class CredentialsTestCase(UserTestCase):
