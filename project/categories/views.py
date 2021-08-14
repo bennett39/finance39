@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import CategorySerializer
-from .models import Category
+from categories.serializers import CategorySerializer
+from categories.models import Category
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

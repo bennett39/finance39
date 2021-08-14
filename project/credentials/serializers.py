@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Credential
+from credentials.models import Credential
 
 class CredentialSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework import permissions
-from .models import Credential
-from .serializers import CredentialSerializer
+from credentials.models import Credential
+from credentials.serializers import CredentialSerializer
 
 
 class CredentialViewSet(viewsets.ModelViewSet):
