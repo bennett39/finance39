@@ -5,7 +5,7 @@ orbs:
   # Orb commands and jobs help you with common scripting around a language/tool
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
-  python: circleci/python@1.2
+  python: circleci/python@1.4.0
 
 workflows:
   commit:
@@ -15,15 +15,12 @@ workflows:
 
 jobs:
   build-and-test:
-    docker:
-      - image: cimg/python:3.8
     environment:
       - ENVIRONMENT: circleci
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-          app-dir: ~/project
       - run:
           name: Run tests
           command: python manage.py test
