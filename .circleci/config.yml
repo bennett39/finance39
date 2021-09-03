@@ -17,7 +17,7 @@ jobs:
   build-and-test:
     executor: python/default
     environment:
-      - ENVIRONMENT: circleci
+      - STACK_NAME: circleci
     steps:
       - checkout
       - python/install-packages:

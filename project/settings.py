@@ -5,6 +5,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Resolve environment name
+STACK_NAME = os.getenv('STACK_NAME')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -118,6 +120,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Set Heroku settings
-IS_CIRCLECI = os.getenv('IS_CIRCLECI')
-if not IS_CIRCLECI:
+if not STACK_NAME == 'circleci':
     django_heroku.settings(locals())
