@@ -1,4 +1,5 @@
 import django_heroku
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -117,4 +118,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Set Heroku settings
-django_heroku.settings(locals())
+IS_CIRCLECI = os.getenv('IS_CIRCLECI')
+if not IS_CIRCLECI:
+    django_heroku.settings(locals())
