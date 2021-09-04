@@ -1,24 +1,25 @@
 import django_heroku
 import dj_database_url
+from dotenv import load_dotenv
 import os
 from pathlib import Path
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Resolve environment name
-STACK_NAME = os.getenv('STACK_NAME')
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+STACK_NAME = os.environ['STACK_NAME']
+IS_PRODUCTION = STACK_NAME == 'production'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k)-0-76_d&v@ldj-ag8*@7$ewg@@i)w&g%rh^)r3rtsyx-_150'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False if IS_PRODUCTION else True
+ALLOWED_HOSTS = ['.finance39.herokuapp.com'] if IS_PRODUCTION else []
 
 
 # Application definition
@@ -69,6 +70,35 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
+
+
+# Cache
+# https://docs.djangoproject.com/en/3.2/topics/cache/
+# https://devcenter.heroku.com/articles/memcachier#django
+
+prod_cache_settings = {
+    'default': {
+        # Use django-bmemcached
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
+        # TIMEOUT is not the connection timeout! It's the default expiration
+        # timeout that should be applied to keys! Setting it to `None`
+        # disables expiration.
+        'TIMEOUT': None,
+        'LOCATION': os.getenv('MEMCACHIER_SERVERS'),
+        'OPTIONS': {
+            'username': os.getenv('MEMCACHIER_USERNAME'),
+            'password': os.getenv('MEMCACHIER_PASSWORD'),
+        }
+    }
+}
+
+local_cache_settings = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+CACHES = prod_cache_settings if IS_PRODUCTION else local_cache_settings
 
 
 # Database
