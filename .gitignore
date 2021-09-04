@@ -1,6 +1,8 @@
+.env
 db.sqlite3
 __pycache__/
 *.swp
 .python-version
 
 static/
+.env
