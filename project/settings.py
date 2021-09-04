@@ -1,4 +1,5 @@
 import django_heroku
+import dj_database_url
 import os
 from pathlib import Path
 
@@ -69,14 +70,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# https://github.com/jacobian/dj-database-url - Use DATABASE_URL from .env
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
+DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
 # Auto fields
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
