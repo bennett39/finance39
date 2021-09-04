@@ -19,6 +19,7 @@ jobs:
     environment:
       - STACK_NAME: circleci
       - DATABASE_URL: sqlite:///db.sqlite3
+      - SECRET_KEY: "k)-0-76_d&v@ldj-ag8*@7$ewg@@i)w&g%rh^)r3rtsyx-_150"
     steps:
       - checkout
       - python/install-packages:
