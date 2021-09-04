@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://github.com/jacobian/dj-database-url
 
 DATABASE_URL = os.getenv('DATABASE_URL', f'sqlite:///db.sqlite3')
-DATABASES = {'default': dj_database_url.config(conn_max_age=600)
+DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
 # Auto fields
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
