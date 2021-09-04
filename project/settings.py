@@ -99,6 +99,7 @@ local_cache_settings = {
 }
 
 CACHES = prod_cache_settings if IS_PRODUCTION else local_cache_settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 
 # Database
@@ -147,9 +148,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Set Heroku settings
-if not STACK_NAME == 'circleci':
+if IS_PRODUCTION:
     django_heroku.settings(locals())
