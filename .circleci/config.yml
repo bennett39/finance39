@@ -86,7 +86,7 @@ jobs:
           name: Run tests
           command: |
             coverage run -a manage.py test --verbosity=2 --failfast --noinput
-            coverage xml
+            coverage xml -i
       - run:
           name: Send coverage report to Code Climate
           command: ./cc-test-reporter after-build -d --exit-code $?
