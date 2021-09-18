@@ -13,8 +13,8 @@ class UnauthenticatedTransactionTestCase(TestCase):
         # Don't authenticate a user - should be forbidden
         response = view(request)
 
-        self.assertEqual(response.status_code, 403)
-        self.assertEqual(response.status_text, 'Forbidden')
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.status_text, 'Unauthorized')
 
 
 class AuthenticatedTransactionTestCase(TestCase):

@@ -21,8 +21,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = False if IS_PRODUCTION else True
 ALLOWED_HOSTS = ['.finance39.herokuapp.com'] if IS_PRODUCTION else []
 
-
-# Application definition
+### Application definition ###
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'oauth2_provider',
     'rest_framework',
     'categories',
     'credentials',
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,6 +99,11 @@ local_cache_settings = {
 }
 
 CACHES = prod_cache_settings if IS_PRODUCTION else local_cache_settings
+
+
+# Sessions
+
+SESSION_COOKIE_SECURE = True if IS_PRODUCTION else False
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 
@@ -109,6 +114,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
 # Auto fields
+
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Password validation
@@ -128,6 +134,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# After login
+
+LOGIN_REDIRECT_URL = '/api'
 
 
 # Internationalization
@@ -151,6 +161,29 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
+# Django REST Framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+OAUTH2_PROVIDER = {
+    'OIDC_ENABLED': True,
+    'OIDC_RSA_PRIVATE_KEY': os.environ['OIDC_RSA_PRIVATE_KEY'],
+    'PKCE_REQUIRED': True,
+    'SCOPES': {
+        'openid': 'OpenID Connect scope',
+        'read': 'Read scope',
+        'write': 'Write scope',
+        'groups': 'Access to your groups'
+    },
+}
 
 # Set Heroku settings
 if IS_PRODUCTION:
