@@ -20,6 +20,7 @@ jobs:
       - STACK_NAME: circleci
       - DATABASE_URL: sqlite:///db.sqlite3
       - SECRET_KEY: "k)-0-76_d&v@ldj-ag8*@7$ewg@@i)w&g%rh^)r3rtsyx-_150"
+      - CC_TEST_REPORTER_ID: 9d8081e7617bb9e454e5403b58d456586e86d70a9ad5900b8f9e454fbc336104
       - OIDC_RSA_PRIVATE_KEY: "-----BEGIN RSA PRIVATE KEY-----\
           MIIJKQIBAAKCAgEAqZ52yIGL6pV6bZ6+b8u+IkjjcWh93lA/M1oXGRleADWW1Mnt\
           deB8f1Tu3Y36AieD+HiEj2F0gKDo8QYo2rvOnG1Hb7Bb6UB13+47KjZwjrdriVit\
