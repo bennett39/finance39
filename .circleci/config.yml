@@ -20,11 +20,75 @@ jobs:
       - STACK_NAME: circleci
       - DATABASE_URL: sqlite:///db.sqlite3
       - SECRET_KEY: "k)-0-76_d&v@ldj-ag8*@7$ewg@@i)w&g%rh^)r3rtsyx-_150"
-      - OIDC_RSA_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n"
+      - CC_TEST_REPORTER_ID: 9d8081e7617bb9e454e5403b58d456586e86d70a9ad5900b8f9e454fbc336104
+      - OIDC_RSA_PRIVATE_KEY: "-----BEGIN RSA PRIVATE KEY-----\
+          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\
+          -----END RSA PRIVATE KEY-----"
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: pip
       - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+          when: always
+      - run:
           name: Run tests
-          command: python manage.py test
+          command: |
+            coverage run -a manage.py test --verbosity=2 --failfast --noinput
+            coverage xml -i
+      - run:
+          name: Send coverage report to Code Climate
+          command: ./cc-test-reporter after-build -d --exit-code $?
+          when: always
